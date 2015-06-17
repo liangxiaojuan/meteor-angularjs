@@ -1,0 +1,32 @@
+
+<div>
+    <form>
+        <label>Name</label>
+        <input ng-model="newParty.name">
+        <label>Description</label>
+        <input ng-model="newParty.description">
+        <!--<button ng-click="parties.push(newParty); newParty='' ">Add</button>-->
+        <!--<button ng-click="parties.save(newParty); newParty='';">Add</button>-->
+        <!--<button ng-click="removeAll()">remove all</button>-->
+        <label>Public</label>
+        <input type="checkbox" ng-model="newParty.public">
+        <button ng-click="newParty.owner=$root.currentUser._id; parties.push(newParty)">Add</button>  <!--传一个用户id 过去-->
+    </form>
+
+    <ul>
+        <h1>Parties:</h1>
+        <div>
+            <input type="search" ng-model="search" placeholder="Search">
+            <select ng-model="orderProperty">
+                <option value="1">Ascending</option>
+                <option value="-1">Descending</option>
+            </select>
+        </div>
+        <li dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count">
+            <a href="/parties/{{party._id}}">{{party.name}}</a>
+            <p>{{party.description}}  {{party.name}}</p>
+            <button ng-click="remove(party)">X</button>
+        </li>
+    </ul>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+</div>

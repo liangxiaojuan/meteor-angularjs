@@ -1,0 +1,20 @@
+
+Here you will see and change the details of the party:
+
+<input  ng-model="party.name"/>
+<input  ng-model="party.description"/>
+<button ng-click="save()">save</button>
+<button ng-click="reset()">reset</button>
+<button><a href="/parties">超链接</a></button>
+<label >is public</label>
+
+<input type="checkbox" ng-model="party.public"/>
+
+<ul>
+    Users:
+    <li ng-repeat="user in users">
+            <div>
+                {{ user.emails[0].address }}
+            </div>
+    </li>
+</ul>
