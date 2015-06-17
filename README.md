@@ -9,7 +9,6 @@
    $scope.push =function(newParty){
      $scope.parties.push(newParty) ;
    }
-
 #修改  绑定一个对象
 
 1.添加 $stateParams
@@ -17,17 +16,17 @@
  $scope.party = $meteor.object(Parties, $stateParams.partyId, false);
  就可以实现实时修改
 
- #删除
+#删除
  拿到 xx数据  直接在ng-click 里面写 xx(数据库名).remove(xxx) 直接删除 ,也可以和增加一样 写在控制器里面
 
- #查询  在控制器 写上#metoer
+#查询  在控制器 写上#metoer
 
     $scope.parties = $meteor.collection(function(){
         return Parties.find(查询条件);
     })
         在视图 写 可以写在 ng-repeat=" " 指令里面 打印数据出来
 
- #基础指令
+#基础指令
 html: ng-app="xxxx "  等于 java种的main 一个body里面只能写一个.告诉浏览器我包含的东西归angular 处理
 
 js:angular.module('xxxx',['angular-meteor','ui.router','angularUtils.directives.dirPagination']);
@@ -39,7 +38,7 @@ html : ng-controller="" 控制器   控制数据
 ng-bind="" 视图 显示数据 也可以用{{xxx}}来显示数据
  一共63种angular规定的指令 ,我们也可以自己定义.
 
- #路由
+#路由
 安装 angularui:angular-ui-router 包
 
 由三个来控制
