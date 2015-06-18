@@ -10,11 +10,20 @@ Here you will see and change the details of the party:
 
 <input type="checkbox" ng-model="party.public"/>
 
+<!--
 <ul>
     Users:
-    <li ng-repeat="user in users">
+    <li ng-repeat="user in users | uninvited:party">
             <div>
                 {{ user.emails[0].address }}
             </div>
+    </li>
+</ul>
+-->
+
+<ul>
+    Users to invite:
+    <li ng-repeat="user in users | uninvited:party">
+        <div>{{ user | displayName }}</div>
     </li>
 </ul>

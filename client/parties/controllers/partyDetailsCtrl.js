@@ -9,7 +9,7 @@ angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$statePara
         $scope.party = $meteor.object(Parties,$stateParams.partyId);
 
         var subscriptionHandle ;
-       $meteor.subscrube('parties').then(function(handle){
+       $meteor.subscribe('parties').then(function(handle){
             //可以使用订阅
            subscriptionHandle = handle;
         });

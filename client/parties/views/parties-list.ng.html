@@ -10,7 +10,7 @@
         <!--<button ng-click="removeAll()">remove all</button>-->
         <label>Public</label>
         <input type="checkbox" ng-model="newParty.public">
-        <button ng-click="newParty.owner=$root.currentUser._id; parties.push(newParty)">Add</button>  <!--传一个用户id 过去-->
+        <button ng-click="newParty.owner=$root.currentUser._id; parties.push(newParty);newParty='';">Add</button>  <!--传一个用户id 过去-->
     </form>
 
     <ul>
@@ -26,6 +26,7 @@
             <a href="/parties/{{party._id}}">{{party.name}}</a>
             <p>{{party.description}}  {{party.name}}</p>
             <button ng-click="remove(party)">X</button>
+            <p><small>Posted by {{ creator(party) | displayName }}</small></p>
         </li>
     </ul>
     <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

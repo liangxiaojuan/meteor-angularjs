@@ -2,8 +2,8 @@
  * Created by dxs on 2015-06-16.
  */
 
-angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor',
-    function($scope, $meteor){
+angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor','$rootScope',
+    function($scope, $meteor,$rootScope){
         $scope.page=1;
         $scope.perPage=3;
         $scope.sort={ name:1 };
@@ -17,7 +17,7 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor',
        skip: parseInt(($scope.page - 1) * $scope.perPage),
        sort: $scope.sort
         });*/
-
+        $meteor.subscribe('users')
         $scope.parties = $meteor.collection(function(){
             return Parties.find({},{                                 //查询数据
                 sort:$scope.getReactively('sort')
@@ -50,5 +50,22 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor',
         //$scope.removeAll = function(){
         //    $scope.parties.remove();
         //};
+        $scope.getUserById = function(userId){
+            return Meteor.users.findOne(userId);
+        };
 
+        $scope.creator = function(party){
+            if (!party)
+                return;
+            var owner = $scope.getUserById(party.owner);
+            if (!owner)
+                return "nobody";
+
+            if ($rootScope.currentUser)
+                if ($rootScope.currentUser._id)
+                    if (owner._id === $rootScope.currentUser._id)
+                        return "me";
+
+            return owner;
+        };
     }]);
